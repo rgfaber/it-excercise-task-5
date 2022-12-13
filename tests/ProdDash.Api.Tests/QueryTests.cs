@@ -6,23 +6,22 @@ using Xunit.Abstractions;
 
 namespace ProdDash.Api.Tests;
 
-
-
-
-
 public class QueryTests : IoCTests
 {
-
     private const string ProdDataResourceName = "ProdDash.Api.Tests.product_data.json";
-    
-    private GetJsonTask _getData;
-    private string _rawJson;
-    private LoadFunc _load;
     private ExtractFunc _extract;
-    private IImmutableList<ProdData.Client.Schema.Product> _prodData;
-    private TransformFunc _transform;
     private IEnumerable<Schema.FlatArticle> _flatArticles;
+
+    private GetJsonTask _getData;
+    private LoadFunc _load;
+    private IImmutableList<ProdData.Client.Schema.Product> _prodData;
     private IQueries _queries;
+    private string _rawJson;
+    private TransformFunc _transform;
+
+    public QueryTests(ITestOutputHelper output, IoCTestContainer testEnv) : base(output, testEnv)
+    {
+    }
 
 
     [Fact]
@@ -35,7 +34,7 @@ public class QueryTests : IoCTests
         // THEN 
         Assert.NotNull(_getData);
     }
-    
+
     [Fact]
     public async Task ShouldExecuteGetExtremes()
     {
@@ -51,7 +50,7 @@ public class QueryTests : IoCTests
         _transform = TestEnv.ResolveRequired<TransformFunc>();
         var (_rawJson, caught) = await _getData("", cts.Token);
         if (caught != null) throw caught;
-        
+
         _prodData = _extract(_rawJson); // AND
         _flatArticles = _load(_prodData, _transform);
         // WHEN
@@ -59,8 +58,8 @@ public class QueryTests : IoCTests
         // THEN
         Assert.NotNull(extremes);
     }
-    
-    
+
+
     [Fact]
     public async Task ShouldExecuteGetMostBottles()
     {
@@ -76,7 +75,7 @@ public class QueryTests : IoCTests
         _transform = TestEnv.ResolveRequired<TransformFunc>();
         var (_rawJson, caught) = await _getData("", cts.Token);
         if (caught != null) throw caught;
-        
+
         _prodData = _extract(_rawJson); // AND
         _flatArticles = _load(_prodData, _transform);
         // WHEN
@@ -84,8 +83,8 @@ public class QueryTests : IoCTests
         // THEN
         Assert.NotNull(mostBottles);
     }
-    
-    
+
+
     [Fact]
     public async Task ShouldExecuteExactPriceByPpLAsc()
     {
@@ -101,7 +100,7 @@ public class QueryTests : IoCTests
         _transform = TestEnv.ResolveRequired<TransformFunc>();
         var (_rawJson, caught) = await _getData("", cts.Token);
         if (caught != null) throw caught;
-        
+
         _prodData = _extract(_rawJson); // AND
         _flatArticles = _load(_prodData, _transform);
         // WHEN
@@ -109,7 +108,7 @@ public class QueryTests : IoCTests
         // THEN
         Assert.NotNull(exactPriceByPpLAsc);
     }
-    
+
     [Fact]
     public async Task ShouldExecuteGetDashboard()
     {
@@ -125,7 +124,7 @@ public class QueryTests : IoCTests
         _transform = TestEnv.ResolveRequired<TransformFunc>();
         var (_rawJson, caught) = await _getData("", cts.Token);
         if (caught != null) throw caught;
-        
+
         _prodData = _extract(_rawJson); // AND
         _flatArticles = _load(_prodData, _transform);
         // WHEN
@@ -133,13 +132,7 @@ public class QueryTests : IoCTests
         // THEN
         Assert.NotNull(dashboard);
     }
-    
 
-    
-    
-    
-    
-    
 
     [Fact]
     public void ShouldResolveQueries()
@@ -152,16 +145,14 @@ public class QueryTests : IoCTests
         Assert.NotNull(_queries);
     }
 
-    public QueryTests(ITestOutputHelper output, IoCTestContainer testEnv) : base(output, testEnv)
-    {}
-
     protected override void Initialize()
     {
-        _getData = TestEnv.ResolveRequired<GetJsonTask>();        
+        _getData = TestEnv.ResolveRequired<GetJsonTask>();
     }
 
     protected override void SetTestEnvironment()
-    {}
+    {
+    }
 
     protected override void InjectDependencies(IServiceCollection services)
     {
@@ -170,7 +161,5 @@ public class QueryTests : IoCTests
             .AddCache()
             .AddEtlTasks()
             .AddQueries();
-            
-
     }
 }

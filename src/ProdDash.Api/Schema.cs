@@ -4,7 +4,6 @@ namespace ProdDash.Api;
 
 public static class Schema
 {
-    
     public record FlatArticle(
         int ProductId,
         string Name,
@@ -18,29 +17,28 @@ public static class Schema
         int NumberOfBottles
     );
 
-    
+
     public record Extremes(
         IImmutableList<FlatArticle> CheapestByPpu,
         IImmutableList<FlatArticle> MostExpensiveByPpu
     )
     {
-        public static Extremes New() 
+        public static Extremes New()
         {
             return new Extremes(
-                ImmutableList<FlatArticle>.Empty, 
+                ImmutableList<FlatArticle>.Empty,
                 ImmutableList<FlatArticle>.Empty);
         }
 
         public static Extremes New(
-            IImmutableList<FlatArticle> minima, 
+            IImmutableList<FlatArticle> minima,
             IImmutableList<FlatArticle> maxima)
         {
             return new Extremes(
-                minima, 
+                minima,
                 maxima);
-        } 
+        }
     }
-
 
 
     public record Dashboard(
@@ -48,6 +46,4 @@ public static class Schema
         IEnumerable<FlatArticle> ExactByPrice,
         IEnumerable<FlatArticle> MostBottles
     );
-    
-
 }

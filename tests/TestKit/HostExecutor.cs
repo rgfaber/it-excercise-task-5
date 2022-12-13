@@ -34,7 +34,7 @@ public class HostExecutor : IHostExecutor
 
     public Task StopAsync(CancellationToken token)
     {
-            return ExecuteAsync(service => service.StopAsync(token));
+        return ExecuteAsync(service => service.StopAsync(token));
     }
 
     private Task ExecuteAsync(Func<IHostedService, Task> callback)

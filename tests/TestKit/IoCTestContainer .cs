@@ -42,6 +42,4 @@ public class IoCTestContainer : IDisposable
     {
         return Provider.GetServices<T>();
     }
-
-
 }

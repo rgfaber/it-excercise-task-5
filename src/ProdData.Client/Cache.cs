@@ -1,6 +1,5 @@
 using System.Collections.Immutable;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ProdDash.Api;
 
 namespace ProdData.Client;
@@ -15,12 +14,12 @@ public static class Inject
     }
 }
 
-public class Cache: ICache
+public class Cache : ICache
 {
-    private readonly GetJsonTask _getJsonTask;
     private readonly ExtractFunc _extract;
-    private readonly TransformFunc _transform;
+    private readonly GetJsonTask _getJsonTask;
     private readonly LoadFunc _load;
+    private readonly TransformFunc _transform;
 
     private IEnumerable<ProdDash.Api.Schema.FlatArticle>
         _dataDictionary = ImmutableList<ProdDash.Api.Schema.FlatArticle>.Empty.AsEnumerable();
@@ -44,7 +43,7 @@ public class Cache: ICache
     {
         if (string.IsNullOrEmpty(url))
             return (Task<IEnumerable<ProdDash.Api.Schema.FlatArticle>>)Task.CompletedTask;
-        return Task<IEnumerable<ProdDash.Api.Schema.FlatArticle>>.Run(async () =>
+        return Task.Run(async () =>
         {
             try
             {
@@ -54,6 +53,7 @@ public class Cache: ICache
                     var prods = _extract(_rawJson);
                     _dataDictionary = _load(prods, _transform);
                 }
+
                 return _dataDictionary;
             }
             catch (Exception e)

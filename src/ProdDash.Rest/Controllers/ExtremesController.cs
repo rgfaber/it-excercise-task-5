@@ -6,15 +6,15 @@ namespace ProdDash.Rest.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CheapestAndMostExpensiveController : ControllerBase
+public class ExtremesController : ControllerBase
 {
-    private readonly IQueries _queries;
     private readonly ICache _cache;
+    private readonly IQueries _queries;
 
-    public CheapestAndMostExpensiveController(
+    public ExtremesController(
         IQueries queries,
         ICache cache
-        )
+    )
     {
         _queries = queries;
         _cache = cache;
@@ -28,7 +28,7 @@ public class CheapestAndMostExpensiveController : ControllerBase
         var res = Schema.Extremes.New();
         try
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(url);
+            ArgumentException.ThrowIfNullOrEmpty(url);
             var dta = await _cache.Refresh(url);
             res = await _queries.GetExtremes(dta);
             return Ok(res);

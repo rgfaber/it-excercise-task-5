@@ -3,17 +3,8 @@ using ProdDash.Api;
 
 namespace ProdData.Client;
 
-
-
-
 public static class ProxyFuncs
 {
-    public static IServiceCollection AddProxy(this IServiceCollection services)
-    {
-        return services
-            .AddTransient(_ => _getRemoteJson);
-    }
-    
     private static readonly GetJsonTask
         _getRemoteJson =
             async (url, ct) =>
@@ -36,7 +27,14 @@ public static class ProxyFuncs
                     caught = e;
                     Console.WriteLine(e);
                 }
+
                 return (json, caught);
             };
+
+    public static IServiceCollection AddProxy(this IServiceCollection services)
+    {
+        return services
+            .AddTransient(_ => _getRemoteJson);
+    }
 }
 

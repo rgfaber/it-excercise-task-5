@@ -11,23 +11,13 @@ public delegate
     IImmutableList<ProdDash.Api.Schema.FlatArticle> TransformFunc(
         Schema.Product product);
 
-public delegate 
-    IEnumerable<ProdDash.Api.Schema.FlatArticle> LoadFunc( 
-        IImmutableList<Schema.Product> products, 
+public delegate
+    IEnumerable<ProdDash.Api.Schema.FlatArticle> LoadFunc(
+        IImmutableList<Schema.Product> products,
         TransformFunc transform);
-
 
 public static class EtlFuncs
 {
-
-    public static IServiceCollection AddEtlTasks(this IServiceCollection services)
-    {
-        return services
-            .AddTransient(_ => _extract)
-            .AddTransient(_ => _transform)
-            .AddTransient(_ => _load);
-    }
-
     private static readonly ExtractFunc
         _extract =
             raw =>
@@ -57,11 +47,10 @@ public static class EtlFuncs
                             article.Unit,
                             article.PricePerUnitText,
                             ppu,
-                            $"{parseRes}, {parseBottles}" ,
+                            $"{parseRes}, {parseBottles}",
                             nbrOfBottles));
                     });
             };
-
 
 
     private static readonly LoadFunc
@@ -69,9 +58,17 @@ public static class EtlFuncs
             (products, transform) =>
             {
                 return products.Aggregate(
-                    ImmutableArray<ProdDash.Api.Schema.FlatArticle>.Empty,
-                    (current, product) =>
-                        current.AddRange(transform(product)))
+                        ImmutableArray<ProdDash.Api.Schema.FlatArticle>.Empty,
+                        (current, product) =>
+                            current.AddRange(transform(product)))
                     .AsQueryable();
             };
+
+    public static IServiceCollection AddEtlTasks(this IServiceCollection services)
+    {
+        return services
+            .AddTransient(_ => _extract)
+            .AddTransient(_ => _transform)
+            .AddTransient(_ => _load);
+    }
 }

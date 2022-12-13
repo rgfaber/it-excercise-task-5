@@ -5,7 +5,6 @@ using AutoFixture;
 
 namespace TestKit;
 
-
 public interface ITestHelper
 {
     string GetXml(byte[] fileData);
@@ -16,8 +15,6 @@ public interface ITestHelper
     IEnumerable<T> CreateMany<T>(int count = 3);
     public T Create<T>();
 }
-
-
 
 internal class TestHelper : ITestHelper
 {
@@ -63,7 +60,7 @@ internal class TestHelper : ITestHelper
         var s = StreamToString(sIn);
         return s;
     }
-    
+
 
     public Fixture CreateFixture()
     {

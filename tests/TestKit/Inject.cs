@@ -13,5 +13,4 @@ public static partial class Inject
             .AddTransient<ITestOutputHelper, TestOutputHelper>()
             .AddSingleton<ITestHelper, TestHelper>();
     }
-   
 }

@@ -9,42 +9,47 @@ namespace ProdDash.Api.Tests;
 public class EtlTests : IoCTests
 {
     private const string ProductDataResource = "ProdDash.Api.Tests.product_data.json";
-    
-    private string _inputJson;
-   
-    private TransformFunc _transform;
-    private LoadFunc _load;
-    private ExtractFunc _extract;
-    
+
     private readonly ProdData.Client.Schema.Product _product = new(
-        Id: 42,
-        BrandName: "Tripple",
-        Name: "Karmeliet",
-        Articles: new[]
+        42,
+        "Tripple",
+        "Karmeliet",
+        new[]
         {
             new ProdData.Client.Schema.Article(
-                Id: 421,
-                ShortDescription: "20 x 0,5L (Glas)",
-                Price: 89.99,
-                Unit: "Liter",
-                PricePerUnitText: "(9,00 €/Liter)",
-                Image: ""),
+                421,
+                "20 x 0,5L (Glas)",
+                89.99,
+                "Liter",
+                "(9,00 €/Liter)",
+                ""),
             new ProdData.Client.Schema.Article(
-                Id: 422,
-                ShortDescription: "6 x 0,3L (Can)",
-                Price: 16.19,
-                Unit: "Liter",
-                PricePerUnitText: "(9,00 €/Liter)",
-                Image: ""),
+                422,
+                "6 x 0,3L (Can)",
+                16.19,
+                "Liter",
+                "(9,00 €/Liter)",
+                ""),
             new ProdData.Client.Schema.Article(
-                Id: 423,
-                ShortDescription: "6 x 0,25L (Can)",
-                Price: 13.49,
-                Unit: "Liter",
-                PricePerUnitText: "(9,00 €/Liter)",
-                Image: "")
+                423,
+                "6 x 0,25L (Can)",
+                13.49,
+                "Liter",
+                "(9,00 €/Liter)",
+                "")
         },
-        DescriptionText: "Tripple Karmeliet aus Belgien");
+        "Tripple Karmeliet aus Belgien");
+
+    private ExtractFunc _extract;
+
+    private string _inputJson;
+    private LoadFunc _load;
+
+    private TransformFunc _transform;
+
+    public EtlTests(ITestOutputHelper output, IoCTestContainer testEnv) : base(output, testEnv)
+    {
+    }
 
 
     [Fact]
@@ -134,7 +139,7 @@ public class EtlTests : IoCTests
     public async Task ShouldTransformProductData()
     {
         // GIVEN
-        
+
         Assert.NotNull(_inputJson);
         Assert.NotEmpty(_inputJson);
         Assert.True(_inputJson.IsJson());
@@ -171,7 +176,7 @@ public class EtlTests : IoCTests
         // THEN
         Assert.NotEqual(RegExUtils.okay, parseRes);
     }
-    
+
     [Fact]
     public async Task ShouldRegexReturnCorrectValueForValidPpuText()
     {
@@ -203,10 +208,6 @@ public class EtlTests : IoCTests
         // THEN
         Assert.NotNull(res);
         Assert.True(res.Any());
-    }
-
-    public EtlTests(ITestOutputHelper output, IoCTestContainer testEnv) : base(output, testEnv)
-    {
     }
 
     protected override void Initialize()

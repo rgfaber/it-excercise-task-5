@@ -1,4 +1,3 @@
-using AutoFixture;
 using Microsoft.AspNetCore.Mvc;
 using ProdDash.Api;
 using TestKit;
@@ -7,12 +6,12 @@ namespace ProdDash.Rest.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
-public class ExactPriceByPpLAscController : ControllerBase
+public class ExactPriceController : ControllerBase
 {
     private readonly ICache _cache;
     private readonly IQueries _queries;
 
-    public ExactPriceByPpLAscController(
+    public ExactPriceController(
         ICache cache,
         IQueries queries)
     {
@@ -30,8 +29,8 @@ public class ExactPriceByPpLAscController : ControllerBase
         string msg;
         try
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(url);
-            ArgumentNullException.ThrowIfNullOrEmpty(Convert.ToString(price));
+            ArgumentException.ThrowIfNullOrEmpty(url);
+            ArgumentException.ThrowIfNullOrEmpty(Convert.ToString(price));
             var pricex100 = Convert.ToInt32(double.Round(price, 2) * 100);
             var dta = await _cache.Refresh(url);
             var res = await _queries.GetExactPriceByPpLAsc(dta, pricex100);
@@ -42,6 +41,7 @@ public class ExactPriceByPpLAscController : ControllerBase
             msg = e.InnerAndOuter();
             Console.WriteLine(msg);
         }
+
         return BadRequest(msg);
     }
 }

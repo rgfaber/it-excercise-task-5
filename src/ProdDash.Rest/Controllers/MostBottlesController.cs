@@ -8,8 +8,8 @@ namespace ProdDash.Rest.Controllers;
 [Route("/api/[controller]")]
 public class MostBottlesController : ControllerBase
 {
-    private readonly IQueries _queries;
     private readonly ICache _cache;
+    private readonly IQueries _queries;
 
     public MostBottlesController(IQueries queries, ICache cache)
     {
@@ -25,9 +25,9 @@ public class MostBottlesController : ControllerBase
         string msg;
         try
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(url);
+            ArgumentException.ThrowIfNullOrEmpty(url);
             var data = await _cache.Refresh(url);
-            var res = _queries.GetMostBottles(data);
+            var res = await _queries.GetMostBottles(data);
             return Ok(res);
         }
         catch (Exception e)
@@ -35,6 +35,7 @@ public class MostBottlesController : ControllerBase
             msg = e.InnerAndOuter();
             Console.WriteLine(msg);
         }
+
         return BadRequest(msg);
     }
 }
