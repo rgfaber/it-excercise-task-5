@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3A3E935-9311-4D64-A975-C57F074D51D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{86D4C6AE-E294-4052-9D49-EB6557B88404}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48DA6922-A1FC-45FC-A7A5-2089B4F1E6A2}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+		Makefile = Makefile
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestKit", "tests\TestKit\TestKit.csproj", "{C37708D1-C14D-4352-A1F8-144A0DC38CE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdDash.Api", "src\ProdDash.Api\ProdDash.Api.csproj", "{4218F301-9DBA-4D2B-8641-2FE176D32C3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdDash.Rest", "src\ProdDash.Rest\ProdDash.Rest.csproj", "{F728B1B7-5469-43B9-ACF4-FFB79DBD71C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdData.Client", "src\ProdData.Client\ProdData.Client.csproj", "{83845EE2-5752-40D4-86BF-E1BB6D0AE84C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdData.Client.Tests", "tests\ProdData.Client.Tests\ProdData.Client.Tests.csproj", "{AAF05A66-4291-4117-B059-9D037E90342D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdDash.Api.Tests", "tests\ProdDash.Api.Tests\ProdDash.Api.Tests.csproj", "{6FBE8FF1-B27A-4531-96E8-B0EF70B64A18}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C37708D1-C14D-4352-A1F8-144A0DC38CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37708D1-C14D-4352-A1F8-144A0DC38CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37708D1-C14D-4352-A1F8-144A0DC38CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37708D1-C14D-4352-A1F8-144A0DC38CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4218F301-9DBA-4D2B-8641-2FE176D32C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4218F301-9DBA-4D2B-8641-2FE176D32C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4218F301-9DBA-4D2B-8641-2FE176D32C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4218F301-9DBA-4D2B-8641-2FE176D32C3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F728B1B7-5469-43B9-ACF4-FFB79DBD71C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F728B1B7-5469-43B9-ACF4-FFB79DBD71C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F728B1B7-5469-43B9-ACF4-FFB79DBD71C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F728B1B7-5469-43B9-ACF4-FFB79DBD71C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83845EE2-5752-40D4-86BF-E1BB6D0AE84C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83845EE2-5752-40D4-86BF-E1BB6D0AE84C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83845EE2-5752-40D4-86BF-E1BB6D0AE84C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83845EE2-5752-40D4-86BF-E1BB6D0AE84C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF05A66-4291-4117-B059-9D037E90342D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF05A66-4291-4117-B059-9D037E90342D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF05A66-4291-4117-B059-9D037E90342D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF05A66-4291-4117-B059-9D037E90342D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBE8FF1-B27A-4531-96E8-B0EF70B64A18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FBE8FF1-B27A-4531-96E8-B0EF70B64A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FBE8FF1-B27A-4531-96E8-B0EF70B64A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBE8FF1-B27A-4531-96E8-B0EF70B64A18}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C37708D1-C14D-4352-A1F8-144A0DC38CE1} = {86D4C6AE-E294-4052-9D49-EB6557B88404}
+		{4218F301-9DBA-4D2B-8641-2FE176D32C3E} = {F3A3E935-9311-4D64-A975-C57F074D51D5}
+		{F728B1B7-5469-43B9-ACF4-FFB79DBD71C4} = {F3A3E935-9311-4D64-A975-C57F074D51D5}
+		{83845EE2-5752-40D4-86BF-E1BB6D0AE84C} = {F3A3E935-9311-4D64-A975-C57F074D51D5}
+		{AAF05A66-4291-4117-B059-9D037E90342D} = {86D4C6AE-E294-4052-9D49-EB6557B88404}
+		{6FBE8FF1-B27A-4531-96E8-B0EF70B64A18} = {86D4C6AE-E294-4052-9D49-EB6557B88404}
+	EndGlobalSection
+EndGlobal

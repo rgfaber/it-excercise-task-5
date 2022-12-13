@@ -1,0 +1,14 @@
+<Project>
+    <PropertyGroup>
+        <VersionPrefix>0.0.0.1</VersionPrefix>
+        <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+        <Authors>rgfaber</Authors>
+        <Company></Company>
+        <Copyright></Copyright>
+        <TargetFramework>net7.0</TargetFramework>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../beer.snk</AssemblyOriginatorKeyFile>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+</Project>
